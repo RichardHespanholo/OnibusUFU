@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 /*ok*/ // FAZER UM MENU DE OPÇÕES
-// COM RETIRADA E INSERÇÃO , PERGUNTANDO O NUMERO DA FILEIRA 
+// COM RETIRADA E INSERÇÃO , PERGUNTANDO O NUMERO DA FILEIRA
 /*ok*/ //, DEPENDENDO DO NUMERO, INSERIR NO MEIO
 // RETIRDA, RETIRA DE ONDE QUISER, RETIRA A FILA INTERA
 // FAZER UM ESTRUTURA QUE APONTE PARA CIMA, PARA BAIXO E PARA OS LADOS, E DUAS OUTRAS DA ESQUERDA E DA DIREITA QUE APONTAM ENTRE SI
@@ -40,7 +40,7 @@ struct cadeira {
 
 // Funçoes
 void inserir(int num); // Insere a fileira juntamente com as cadeiras
-int remover(); // Remove a fileira inteira
+void remover(int num); // Remove a fileira inteira
 void busca_cadeira(); // Verifica se a cadeira está vaga
 void busca_fileira(); // Verifica se a fileira escolhida para remoção existe
 void mostrar(); // Mostra os lugares ocupados e desocupados
@@ -67,12 +67,20 @@ void main() {
             getch();
             break;
         case 2: // Remover fileira
+            system("cls");
+            printf("              ----------------- REMOVER FILEIRA ----------------- \n\n");
+        	printf(" Qual fileira deseja remover? ");
+        	scanf("%d", &numFileira);
+        	remover(numFileira);
+        	getch();
             break;
         case 3: // Comprar cadeira
             break;
         case 4: // Cancelar compra
             break;
         case 5:// Mostrar cadeiras ocupadas e desocupadas
+            system("cls");
+            printf("        ---------- CADEIRAS OCUPADAS E DESOCUPADAS POR CORREDOR ---------- \n\n");
             mostrar();
             getch();
             break;
@@ -120,16 +128,31 @@ void inserir(int num){
     printf("\n Fileira inserida com sucesso! ");
 }
 
-int remover(){
+void remover(int num){
+    /* Pensar se é necessário liberar também o espaço de memoria das cadeiras separadamente*/
     struct corredor *p;
-
+    p=inicio;
+    while (p->numero !=num){
+        p=p->prox;
+    }
+    printf("\n Fileira removida: %d" , p->numero); // mostrando qual fileira foi removida
+    if (p==inicio) // removendo do inicio
+        inicio=p->prox;
+    else
+        p->ant=p->prox; // removendo do meio ou qualquer lugar
+    free(p); // liberando a fileira inteira
 }
 
 void mostrar(){
     struct corredor *p;
     p=inicio;
-    while (p){
-        printf(" Corredor : %d\n", p->numero);
-        p=p->prox;
+    if (p==NULL){
+        printf("                          !! Onibus em construcao!! ");
+    }
+    else {
+        while (p){
+            printf(" Corredor : %d\n", p->numero);
+            p=p->prox;
+        }
     }
 }
