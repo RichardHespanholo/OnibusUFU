@@ -4,8 +4,7 @@
 #include <stdbool.h>
 
 /*ok*/ // FAZER UM MENU DE OPÇÕES
-// COM RETIRADA E INSERÇÃO , PERGUNTANDO O NUMERO DA FILEIRA 
-/*ok*/ //, DEPENDENDO DO NUMERO, INSERIR NO MEIO
+// COM RETIRADA E INSERÇÃO , PERGUNTANDO O NUMERO DA FILEIRA , DEPENDENDO DO NUMERO, INSERIR NO MEIO
 // RETIRDA, RETIRA DE ONDE QUISER, RETIRA A FILA INTERA
 // FAZER UM ESTRUTURA QUE APONTE PARA CIMA, PARA BAIXO E PARA OS LADOS, E DUAS OUTRAS DA ESQUERDA E DA DIREITA QUE APONTAM ENTRE SI
 // PENSAR EM COMO FAREI O MECANISMO DE BUSCA DESSE PROGRAMA
@@ -52,9 +51,8 @@ void main() {
     inicio=NULL;
     int op, numFileira, remove;
 	while (1){
-        system("cls");
-        printf("                    ONIBUS  ----- By: Richard  e Cecilia.\n\n"); // Quer dar um nome melhorzinho?
-        printf(" 1 - Inserir fileira\n 2 - Remover fileira\n 3 - Comprar cadeira\n 4 - Cancelar compra\n 5 - Mostrar cadeiras ocupadas e desocupadas\n 6 - Sair do programa\n\n");
+        printf(" ONIBUS  ----- By: Richard  e Cecilia.\n\n"); // Quer dar um nome melhorzinho?
+        printf(" 1 - Inserir fileira\n 2 - Remover fileira\n 3 - Comprar cadeira\n 4 - Cancelar compra\n 5 - Mostrar cadeiras ocupadas e desocupadas\n 6 -  Sair do programa\n\n");
         printf(" Digite uma opcao: ");
         scanf("%d", &op);
 		switch (op){
@@ -64,7 +62,6 @@ void main() {
             printf(" Qual o numero da fileira que deseja inserir? ");
             scanf("%d", &numFileira);
             inserir(numFileira);
-            getch();
             break;
         case 2: // Remover fileira
             break;
@@ -80,7 +77,7 @@ void main() {
             system("cls");
             printf("\n\n             .................... Finalizando ! .................... \n\n");
             getch();
-            return ;
+            return 0;
 		}
 	}
 	return 0;
@@ -106,18 +103,18 @@ void inserir(int num){
             while (p->prox!=NULL && !(p->numero > corre->numero)){ // percorre a lista de forma que veja onde deve ser colocado a fileira
                 p=p->prox;
             }
-            if (p->numero > corre->numero){ // insere antes a fileira
-                corre->prox=p;
-                corre->ant=p->ant->prox; // o anterior do novo corredor recebe o proximo anteiror do apontamento de p (desenha que você entende)
-                p->ant->prox=corre; // o proximo anteiror do apontamento de p recebe o corredor
-            }
-            else if (p->prox==NULL){ // cheguei ao final da lista
+            if (p->prox==NULL){ // cheguei ao final da lista
                  corre->ant=p; // o proximo do corredor aponta pra onde p aponta
                  p->prox=corre;   // corredor é adicionado no final da lista
             }
+            else if (p->numero > corre->numero){ // insere antes a fileira
+                corre->prox=p->ant;
+                corre->ant=p->ant->prox; // o anterior do novo corredor recebe o proximo anteiror do apontamento de p (desenha que você entende)
+                p->ant->prox=corre; // o proximo anteiror do apontamento de p recebe o corredor
+            }
         }
    }
-    printf("\n Fileira inserida com sucesso! ");
+
 }
 
 int remover(){
@@ -129,7 +126,7 @@ void mostrar(){
     struct corredor *p;
     p=inicio;
     while (p){
-        printf(" Corredor : %d\n", p->numero);
+        printf(" Corredor : %d", p->numero);
         p=p->prox;
     }
 }
