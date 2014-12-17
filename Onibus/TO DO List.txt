@@ -1,0 +1,18 @@
+/*ok*/  FAZER UM MENU DE OPÇÕES
+// COM RETIRADA E INSERÇÃO , PERGUNTANDO O NUMERO DA FILEIRA
+/*ok*/  DEPENDENDO DO NUMERO, INSERIR NO MEIO
+// RETIRDA, RETIRA DE ONDE QUISER, RETIRA A FILA INTERA
+// FAZER UM ESTRUTURA QUE APONTE PARA CIMA, PARA BAIXO E PARA OS LADOS, E DUAS OUTRAS DA ESQUERDA E DA DIREITA QUE APONTAM ENTRE SI
+// PENSAR EM COMO FAREI O MECANISMO DE BUSCA DESSE PROGRAMA
+// PRIMEIRO TRABALHAR COM A CAIXA QUE APONTA PARA CIMA E PARA BAIXO.
+// ------------------------------------------------------------------------------------------------------------------------------------
+// PRIORIDADE DE FUNÇÔES
+/*ok*/  1 - Menu
+/*ok*/  2 - Struct
+// 3 - Inserir
+// 4 - BUSCA
+// 5 - Vender a cadeira
+// 6 - Cancelar a compra
+// 7 - Mostrar
+// 8 - Remover
+// Deixar especificado o que cada função vai fazer e conter
